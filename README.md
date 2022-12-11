@@ -10,7 +10,12 @@ This is a project for a small university homework.
 pip install -r requirements.txt
 ```
 
-2. Run the app with
+2. Initialize the database (no ORM yet)
+
+   - For that, you have to run the [`init.sql`](init.sql) against a MySQL or a MariaDB database.
+   - Create a `.env` from the [`.env.example`](.env.example) file and edit it if needed.
+
+3. Run the app with
 
 ```
 python main.py
@@ -28,6 +33,8 @@ virtualenv .
 
 ```bash
 source bin/activate
+# or if on windows
+source Scripts/activate
 ```
 
 3. Installing packages
@@ -47,3 +54,7 @@ pip freeze > requirements.txt
 ```bash
 deactivate
 ```
+
+### Resources
+
+- [Setting up virtualenv](https://realpython.com/python-virtual-environments-a-primer/)
