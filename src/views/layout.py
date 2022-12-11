@@ -164,7 +164,6 @@ class Layout(Tk):
         '''
         try:
             selected_item = self.tree.selection()[0]
-            print(f"Selecting item with id {str(self.tree.item(selected_item)['values'][0])}")
             self.inputs['id_'].set(str(self.tree.item(selected_item)['values'][0]))
             self.inputs['name'].set(str(self.tree.item(selected_item)['values'][1]))
             self.inputs['genres'].set(str(self.tree.item(selected_item)['values'][2]))
