@@ -5,9 +5,6 @@ TODO: Use an ORM
 '''
 
 
-from typing import Self
-
-
 class Anime:
     '''
     Default constructor.
@@ -20,7 +17,7 @@ class Anime:
         self.author = author
         self.seasons_nr = seasons_nr
 
-    def set_id(self, id_: int) -> Self:
+    def set_id(self, id_: int):
         '''
         ID Setter
         '''
