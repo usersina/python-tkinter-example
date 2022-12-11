@@ -102,16 +102,16 @@ class Layout(Tk):
             font=('calibri', 17, 'bold',), bg="#ffa67e", foreground="#5a0f2e",
             borderwidth='2', command=self.on_delete
         )
-        select_btn = Button(
-            self, text="Select", padx=25, pady=5, width=5, bd=5,
-            font=('calibri', 17, 'bold',), bg="#ffa67e", foreground="#5a0f2e",
-            borderwidth='2', command=self.on_select
+        reset_btn = Button(
+            self, text="Reset", padx=15, pady=2, width=5, bd=5,
+            font=('calibri', 17, 'bold',), bg="#220070", foreground="#ffffff",
+            borderwidth='2', command=self.on_reset
         )
 
         add_btn.grid(row=9, column=1, columnspan=1)
         update_btn.grid(row=9, column=2, columnspan=1)
         delete_btn.grid(row=9, column=3, columnspan=1)
-        select_btn.grid(row=9, column=4, columnspan=1)
+        reset_btn.grid(row=9, column=0, columnspan=1)
 
         # ---------- Create the list
         self.tree = ttk.Treeview(self)
@@ -169,6 +169,9 @@ class Layout(Tk):
             self.inputs['genres'].set(str(self.tree.item(selected_item)['values'][2]))
             self.inputs['author'].set(str(self.tree.item(selected_item)['values'][3]))
             self.inputs['seasons_nr'].set(str((self.tree.item(selected_item)['values'][4])))
+        except IndexError:
+            # Ignore clicking on empty space in tree
+            pass
         except Exception:
             messagebox.showinfo("No selection found", "Please select a data row")
 
