@@ -5,6 +5,7 @@ to use a connection pool instead.
 
 NOTE: Using an ORM will better address this.
 '''
+import os
 import pymysql
 from src.models.anime import Anime
 
@@ -16,10 +17,10 @@ class AnimeController:
 
     def __init__(self) -> None:
         self.conn = pymysql.connect(
-            host='localhost',
-            user='root',
-            password='',
-            db='anime_db',
+            host=os.getenv('DB_HOST'),
+            user=os.getenv('DB_USER'),
+            password=os.getenv('DB_PASS') or '',
+            db=os.getenv('DB_NAME'),
         )
 
     def save(self, anime: Anime) -> Anime:

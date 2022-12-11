@@ -4,3 +4,5 @@ lib
 pyvenv.cfg
 .vscode
 __pycache__
+Scripts
+.env
