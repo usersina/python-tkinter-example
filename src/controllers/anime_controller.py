@@ -12,7 +12,8 @@ from src.models.anime import Anime
 
 class AnimeController:
     '''
-    TODO
+    The controller responsible for interacting with the `Anime` database table.
+    It provides basic CRUD functionality.
     '''
 
     def __init__(self) -> None:
@@ -25,14 +26,14 @@ class AnimeController:
 
     def save(self, anime: Anime) -> Anime:
         '''
-        FIXME SQL Injection
+        Insert a row in the database.
         '''
         cursor = self.conn.cursor()
         self.conn.ping()  # threadsafe
-        cursor.execute(f"\
+        cursor.execute("\
             INSERT INTO animes(name, genres, author, seasons_nr) VALUES\
-            ('{anime.name}', '{anime.genres}', '{anime.author}', {anime.seasons_nr})\
-        ")
+            (%s, %s, %s, %s)\
+        ", (anime.name, anime.genres, anime.author, anime.seasons_nr))
         anime.id_ = cursor.lastrowid
         self.conn.commit()
         self.conn.close()
@@ -40,7 +41,7 @@ class AnimeController:
 
     def find_all(self):
         '''
-        TODO
+        Find all rows in the database.
         '''
         cursor = self.conn.cursor()
         self.conn.ping()  # threadsafe
@@ -52,25 +53,24 @@ class AnimeController:
 
     def update(self, anime: Anime) -> None:
         '''
-        FIXME SQL Injection
+        Update a row corresponding to the passed anime. Note that the anime
+        argument should include all updates.
         '''
         cursor = self.conn.cursor()
         self.conn.ping()  # threadsafe
-        cursor.execute(f"\
-            UPDATE animes SET \
-                name='{anime.name}', genres='{anime.genres}',\
-                author='{anime.author}', seasons_nr={anime.seasons_nr}\
-                WHERE id={anime.id_}\
-        ")
+        cursor.execute("\
+            UPDATE animes SET name=%s, genres=%s, author=%s, seasons_nr=%s\
+            WHERE id=%s\
+        ", (anime.name, anime.genres, anime.author, anime.seasons_nr, anime.id_))
         self.conn.commit()
         self.conn.close()
 
     def remove(self, id_: int) -> None:
         '''
-        FIXME SQL Injection
+        Delete a database row.
         '''
         cursor = self.conn.cursor()
         self.conn.ping()  # threadsafe
-        cursor.execute(f"DELETE FROM animes WHERE id={id_}")
+        cursor.execute("DELETE FROM animes WHERE id=%s", (id_,))
         self.conn.commit()
         self.conn.close()

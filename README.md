@@ -1,6 +1,11 @@
 # Python Tkinter CRUD Example
 
 This is a project for a small university homework.
+Although the UX is pretty outdated, it was a pretty good exercice to get familiar with Tkinter and how to communicate with a MySQL database in Python3.
+
+Note that tthe application is documented throughout the files in the [src directory](src). In addition, `pylint` was used for cleaner code.
+
+![app-image](media/screenshot.JPG)
 
 ## Getting started
 

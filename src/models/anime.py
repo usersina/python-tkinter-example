@@ -1,13 +1,14 @@
 # pylint: disable=invalid-name
 '''
-The Anime object or entity that corresponds to a database column.
-TODO: Use an ORM
+The Anime class or entity corresponds to a database table.
+
+TODO: Use an ORM.
 '''
 
 
 class Anime:
     '''
-    Default constructor.
+    The class that corresponds to the table of the same name.
     '''
 
     def __init__(self, name: str, genres: str, author: str, seasons_nr: int) -> None:
@@ -19,7 +20,8 @@ class Anime:
 
     def set_id(self, id_: int):
         '''
-        ID Setter
+        ID Setter. This is used since an Anime object cannot be instantiated
+        with the ID since the database is handling that.
         '''
         self.id_ = id_
         return self

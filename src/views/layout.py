@@ -10,7 +10,7 @@ from src.models.anime import Anime
 
 class Layout(Tk):
     '''
-    Default Layout Constructor
+    Default Layout Constructor that extends the `Tk` class.
     '''
 
     def __init__(self, *args, **kwargs) -> None:
